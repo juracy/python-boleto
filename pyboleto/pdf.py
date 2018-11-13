@@ -45,6 +45,7 @@ class BoletoPDF(object):
         self.font_size_value = 9
         self.delta_title = self.height_line - (self.font_size_title + 1)
         self.delta_font = self.font_size_value + 1
+        self.print_barcode = True
 
         if landscape:
             pagesize = pagesize_landscape(A4)
@@ -758,8 +759,9 @@ class BoletoPDF(object):
             boleto_dados.linha_digitavel
         )
 
-        # Codigo de barras
-        self._codigoBarraI25(boleto_dados.barcode, 2 * self.space, 0)
+        # Código de barras
+        if self.print_barcode:
+            self._codigoBarraI25(boleto_dados.barcode, 2 * self.space, 0)
 
         self.pdf_canvas.restoreState()
 
