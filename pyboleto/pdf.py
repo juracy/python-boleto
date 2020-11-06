@@ -228,7 +228,7 @@ class BoletoPDF(object):
                             self.height_line)
 
         if boleto_dados.logo_image:
-            if not hasattr(boleto_dados.logo_image, 'read'):
+            if hasattr(boleto_dados.logo_image, 'read'):
                 logo_image_path = boleto_dados.logo_image
             else:
                 logo_image_path = load_image(boleto_dados.logo_image)
@@ -739,7 +739,7 @@ class BoletoPDF(object):
         self.__verticalLine(60 * mm, y, self.height_line)  # Numero do Banco
 
         if boleto_dados.logo_image:
-            if not hasattr(boleto_dados.logo_image, 'read'):
+            if hasattr(boleto_dados.logo_image, 'read'):
                 logo_image_path = boleto_dados.logo_image
             else:
                 logo_image_path = load_image(boleto_dados.logo_image)
