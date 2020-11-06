@@ -15,6 +15,7 @@ from reportlab.graphics.barcode.common import I2of5
 from reportlab.lib.colors import black
 from reportlab.lib.pagesizes import A4, landscape as pagesize_landscape
 from reportlab.lib.units import mm, cm
+from reportlab.lib.utils import ImageReader
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.pdfgen import canvas
 
@@ -229,7 +230,7 @@ class BoletoPDF(object):
 
         if boleto_dados.logo_image:
             if hasattr(boleto_dados.logo_image, 'read'):
-                logo_image_path = boleto_dados.logo_image
+                logo_image_path = ImageReader(boleto_dados.logo_image)
             else:
                 logo_image_path = load_image(boleto_dados.logo_image)
             self.pdf_canvas.drawImage(
@@ -740,7 +741,7 @@ class BoletoPDF(object):
 
         if boleto_dados.logo_image:
             if hasattr(boleto_dados.logo_image, 'read'):
-                logo_image_path = boleto_dados.logo_image
+                logo_image_path = ImageReader(boleto_dados.logo_image)
             else:
                 logo_image_path = load_image(boleto_dados.logo_image)
             self.pdf_canvas.drawImage(
