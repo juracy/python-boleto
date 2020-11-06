@@ -739,7 +739,10 @@ class BoletoPDF(object):
         self.__verticalLine(60 * mm, y, self.height_line)  # Numero do Banco
 
         if boleto_dados.logo_image:
-            logo_image_path = load_image(boleto_dados.logo_image)
+            if not hasattr(boleto_dados.logo_image, 'read'):
+                logo_image_path = boleto_dados.logo_image
+            else:
+                logo_image_path = load_image(boleto_dados.logo_image)
             self.pdf_canvas.drawImage(
                 logo_image_path,
                 0,
